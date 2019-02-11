@@ -34,7 +34,7 @@ void printCarMovement(car c);
 
 queue *north, *east, *south, *west;
 queue* traffic[4];
-FILE *f;
+/* FILE *f; */
 
 int main() {
     north = createQueue(100, 'N');
@@ -50,19 +50,23 @@ int main() {
     char input[100];
     pid_t pid;
 
-    if(!(f = fopen("./input1.txt", "r"))) {
+/*     if(!(f = fopen("./input1.txt", "r"))) {
         printf("Cannot find file in same dir as program.\n");
         exit(EXIT_FAILURE);
     }
-
     // Use input file to create traffic
     fgets(input, 100, f);
     direction = laneToIndex(input[0]);
     fgets(input, 100, f);
+    passingCars = input[0] - '0'; */
+
+    gets(input);
+    direction = laneToIndex(input[0]);
+    gets(input);
     passingCars = input[0] - '0';
-/*     printf("%d\n", direction);
-    printf("%d\n", passingCars); */
-    while(fgets(input, 100, f)) {
+
+/*     while(fgets(input, 100, f)) { */
+    while(gets(input)) {
         int whiteSpace = -1;
         int i = 0;
         for(; i < 100 && whiteSpace == -1; i++)
@@ -75,7 +79,7 @@ int main() {
             lp[i] = input[i];
         char l = input[whiteSpace+1];
         int w = input[whiteSpace+3] - '0';
-/*         printf("%s, %c, %d\n", lp, l, w); */
+        // printf("%s, %c, %d\n", lp, l, w);
         addCar(lp, l, w);
     }
 
@@ -103,7 +107,7 @@ int main() {
         carsPassed = 0;
     }
 
-    fclose(f);
+/*     fclose(f); */
     free(north);
     free(east);
     free(south);
