@@ -234,4 +234,3 @@ void printQueue(queue * q) {
         printf("|\n");
     }
 }
-
